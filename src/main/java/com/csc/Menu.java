@@ -33,7 +33,29 @@ public class Menu {
     }
 
     public static void main(String[] args) {
-        int result = validateMenuInteger(10, 100, "Enter an integer between 10 and 100: ", "Invalid input. Please try again");
-        System.out.println("You entered: " + result);
+        // Scenario 1: No bounds (any integer is valid)
+        System.out.println("Scenario 1: No bounds (any integer is valid)");
+        int result1 = validateMenuInteger(null, null, "Enter any integer: ", "Invalid input. Please try again.");
+        System.out.println("You entered: " + result1);
+        
+        // Scenario 2: Lower bound only
+        System.out.println("\nScenario 2: Lower bound only");
+        int result2 = validateMenuInteger(10, null, "Enter an integer greater than or equal to 10: ", "Invalid input. Please try again.");
+        System.out.println("You entered: " + result2);
+        
+        // Scenario 3: Upper bound only
+        System.out.println("\nScenario 3: Upper bound only");
+        int result3 = validateMenuInteger(null, 50, "Enter an integer less than or equal to 50: ", "Invalid input. Please try again.");
+        System.out.println("You entered: " + result3);
+        
+        // Scenario 4: Both lower and upper bounds
+        System.out.println("\nScenario 4: Both lower and upper bounds");
+        int result4 = validateMenuInteger(10, 100, "Enter an integer between 10 and 100: ", "Invalid input. Please try again.");
+        System.out.println("You entered: " + result4);
+        
+        // Scenario 5: Invalid input type
+        System.out.println("\nScenario 5: Invalid input type (enter a non-integer)");
+        int result5 = validateMenuInteger(1, 10, "Enter an integer between 1 and 10: ", "Invalid input. Please try again.");
+        System.out.println("You entered: " + result5);
     }
 }
