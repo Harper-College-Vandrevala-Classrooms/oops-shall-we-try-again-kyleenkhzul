@@ -13,9 +13,11 @@ public class Menu {
     public static int validateMenuInteger(Integer lowerBound, Integer upperBound, String prompt, String errorMessage) {
         Scanner scanner = new Scanner(System.in);
         Integer userInput;
+        String stringInput;
+        int defaultInt = 100;
 
         while(true) {
-            System.out.print(prompt);
+            System.out.println(prompt);
             if (scanner.hasNextInt()) {
                 userInput = scanner.nextInt();
                 if ((lowerBound == null || userInput >= lowerBound) && (upperBound == null || userInput <= upperBound)) {
@@ -24,17 +26,27 @@ public class Menu {
                 else {
                     System.out.println(errorMessage);
                 }
-            } 
-            else {
-                System.out.println(errorMessage);
-                scanner.next(); 
             }
+            else {
+                stringInput = scanner.nextLine();
+                if(stringInput.equals("default")) {
+                    return defaultInt;
+                }
+                else {
+                    System.out.println(errorMessage);
+                }
+            }   
         }
     }
 
     public static void main(String[] args) {
+        // Portfolio Add-On: Default Values
+        System.out.println("Portfolio Add-On");
+        int defaultOption = validateMenuInteger(null, null, "Please enter a value. Enter \"default\" to use the default value of 100.", "Invalid input. Please try again.");
+        System.out.println("The default value chosen by the user is " + defaultOption);
+
         // Scenario 1: No bounds (any integer is valid)
-        System.out.println("Scenario 1: No bounds (any integer is valid)");
+        System.out.println("\nScenario 1: No bounds (any integer is valid)");
         int result1 = validateMenuInteger(null, null, "Enter any integer: ", "Invalid input. Please try again.");
         System.out.println("You entered: " + result1);
         
